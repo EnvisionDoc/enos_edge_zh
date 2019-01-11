@@ -14,10 +14,10 @@ Edge安装部署
 Edge安装部署步骤请参见以下章节：
 
 .. toctree::
- :maxdepth: 1
- :titlesonly:
+   :maxdepth: 1
+   :titlesonly:
 
- configuring_server_network
- installing_docker
- applying_edge
- download_initializing_edge
+   configuring_server_network
+   installing_docker
+   applying_edge
+   download_initializing_edge

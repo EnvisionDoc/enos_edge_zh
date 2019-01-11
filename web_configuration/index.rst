@@ -9,9 +9,7 @@
 
 2.  使用已授权用户名登录。
 
-*表： Web配置中心各环境访问地址*
-
-.. list-table::
+.. list-table:: 表： Web配置中心各环境访问地址
    :header-rows: 1
 
    * - 环境

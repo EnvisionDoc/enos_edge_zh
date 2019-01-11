@@ -49,6 +49,8 @@ EnOS™ Edge作为远景EnOS™ IoT平台的数据采集前置，具备设备快
 
 ## 软件架构图
 
-![](media/image001.png)
+.. image:: media/image001.png
+   :alt: 图：Edge软件架构图
+   :width: 750px
 
-*图：Edge软件架构图*
+<!--end-->

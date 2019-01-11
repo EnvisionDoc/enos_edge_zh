@@ -7,83 +7,60 @@
 当前EnOS™ Edge的设备模块库中，已积累了绝大多数能源设备型号的设备，能够光伏应用于风电，光伏，园区，楼宇等场景中。同时，借助于Edge中的前置模块对接入数据的灵活处理，EnOS™
 Edge也可以快速支持第三方应用系统转发而来的数据接入。
 
-**注意**：当前Edge支持采集的数据都是指实时数据。
+.. note:: 当前Edge支持采集的数据都是指实时数据。
 
-*表：EnOS™ Edge支持数据采集的设备类型*
+.. list-table:: 表：EnOS™ Edge支持数据采集的设备类型
 
-<table>
-  <tr>
-    <td>应用领域 </td>
-    <td>设备类型 </td>
-    <td>备注 </td>
-  </tr>
-  <tr>
-    <td>光伏 </td>
-    <td>逆变器 </td>
-    <td>设备 </td>
-  </tr>
-  <tr>
-    <td>汇流箱 </td>
-    <td>设备 </td>
-  </tr>
-  <tr>
-    <td>气象站 </td>
-    <td>设备 </td>
-  </tr>
-  <tr>
-    <td>电能表 </td>
-    <td>设备 </td>
-  </tr>
-  <tr>
-    <td>集中式电站监控系统 </td>
-    <td>第三方系统 </td>
-  </tr>
-  <tr>
-    <td>升压站综自系统 </td>
-    <td>设备 </td>
-  </tr>
-  <tr>
-    <td>风能 </td>
-    <td>风机 </td>
-    <td>设备 </td>
-  </tr>
-  <tr>
-    <td>箱变 </td>
-    <td>设备 </td>
-  </tr>
-  <tr>
-    <td>测风塔 </td>
-    <td>设备 </td>
-  </tr>
-  <tr>
-    <td>升压站综自系统 </td>
-    <td>第三方系统 </td>
-  </tr>
-  <tr>
-    <td>工业园区/商业楼宇 </td>
-    <td>电能表 </td>
-    <td>设备 </td>
-  </tr>
-  <tr>
-    <td>充电桩 </td>
-    <td>设备 </td>
-  </tr>
-  <tr>
-    <td>配电管理系统 </td>
-    <td>第三方系统 </td>
-  </tr>
-  <tr>
-    <td>储能电池PCS </td>
-    <td>设备 </td>
-  </tr>
-  <tr>
-    <td>传统电力(火电、水电、燃气发电等) </td>
-    <td>DCS/综自后台系统等 </td>
-    <td>第三方系统 </td>
-  </tr>
-</table>
+   * - 应用领域
+     - 设备类型
+     - 备注
+   * - 光伏
+     - 逆变器
+     - 设备
+   * - 汇流箱
+     - 设备
+     - null
+   * - 气象站
+     - 设备
+     - null
+   * - 电能表
+     - 设备
+     - null
+   * - 集中式电站监控系统
+     - 第三方系统
+     - null
+   * - 升压站综自系统
+     - 设备
+     - null
+   * - 风能
+     - 风机
+     - 设备
+   * - 箱变
+     - 设备
+     - null
+   * - 测风塔
+     - 设备
+     - null
+   * - 升压站综自系统
+     - 第三方系统
+     - null
+   * - 工业园区/商业楼宇
+     - 电能表
+     - 设备
+   * - 充电桩
+     - 设备
+     - null
+   * - 配电管理系统
+     - 第三方系统
+     - null
+   * - 储能电池PCS
+     - 设备
+     - null
+   * - 传统电力(火电、水电、燃气发电等)
+     - DCS/综自后台系统等
+     - 第三方系统
 
-**注意**：包括但不限于表中所列出的类型。
+.. note:: 包括但不限于表中所列出的类型。
 
 ## 数据时间戳处理
 
@@ -99,175 +76,96 @@ Edge也可以快速支持第三方应用系统转发而来的数据接入。
 
 Edge的数据采集能力，主要是基于Edge对各种通讯规约的支持能力。EnOS™ Edge规约库中不仅积累了大量的行业标准通讯规约，同时也有丰富的特定类型设备的私有通讯规约。
 
-*表：EnOS™ Edge支持的行业标准规约*
+.. list-table:: 表：EnOS™ Edge支持的行业标准规约
 
-<table>
-  <tr>
-    <td>规约</td>
-    <td>数据类型</td>
-    <td>通讯类型</td>
-    <td>网络</td>
-  </tr>
-  <tr>
-    <td>ModbusTCP</td>
-    <td>Bit/Short/Ushort/Int/Uint/Float</td>
-    <td>Client/Server</td>
-    <td>以太网 </td>
-  </tr>
-  <tr>
-    <td>ModbusRTU</td>
-    <td>Bit/Short/Ushort/Int/Uint/Float</td>
-    <td>Master</td>
-    <td>需要转换成以太网 </td>
-  </tr>
-  <tr>
-    <td>IEC60870-5-104</td>
-    <td>Int/Float</td>
-    <td>Client/Server</td>
-    <td>以太网 </td>
-  </tr>
-  <tr>
-    <td>DNP3.0</td>
-    <td>Int/Float</td>
-    <td>Client</td>
-    <td>以太网 </td>
-  </tr>
-  <tr>
-    <td>OPC-DA</td>
-    <td>Uint/Double/Float/Int/Long/Char/Ushort/Short/Bool</td>
-    <td>Client </td>
-    <td>以太网 </td>
-  </tr>
-  <tr>
-    <td>OPC-XML-DA</td>
-    <td>Uint/Double/Float/Int/Long/Char/Ushort/Short/Bool</td>
-    <td>Client</td>
-    <td>以太网 </td>
-  </tr>
-  <tr>
-    <td>OPC-UA</td>
-    <td>Uint/Double/Float/Int/Long/Char/Ushort/Short/Bool</td>
-    <td>Client</td>
-    <td>以太网 </td>
-  </tr>
-  <tr>
-    <td>HTTP(s)</td>
-    <td>Int/Float</td>
-    <td>Web Service</td>
-    <td>以太网 </td>
-  </tr>
-  <tr>
-    <td>DL/T645-1997</td>
-    <td>Int</td>
-    <td>Master</td>
-    <td>需要转换成以太网 </td>
-  </tr>
-  <tr>
-    <td>DL/T645-2007</td>
-    <td>Int</td>
-    <td>Master</td>
-    <td>需要转换成以太网 </td>
-  </tr>
-</table>
+   * - 规约
+     - 数据类型
+     - 通讯类型
+     - 网络
+   * - ModbusTCP
+     - Bit/Short/Ushort/Int/Uint/Float
+     - Client/Server
+     - 以太网
+   * - ModbusRTU
+     - Bit/Short/Ushort/Int/Uint/Float
+     - Master
+     - 需要转换成以太网
+   * - IEC60870-5-104
+     - Int/Float
+     - Client/Server
+     - 以太网
+   * - DNP3.0
+     - Int/Float
+     - Client
+     - 以太网
+   * - OPC-DA
+     - Uint/Double/Float/Int/Long/Char/Ushort/Short/Bool
+     - Client
+     - 以太网
+   * - OPC-XML-DA
+     - Uint/Double/Float/Int/Long/Char/Ushort/Short/Bool
+     - Client
+     - 以太网
+   * - OPC-UA
+     - Uint/Double/Float/Int/Long/Char/Ushort/Short/Bool
+     - Client
+     - 以太网
+   * - HTTP(s)
+     - Int/Float
+     - Web Service
+     - 以太网
+   * - DL/T645-1997
+     - Int
+     - Master
+     - 需要转换成以太网
+   * - DL/T645-2007
+     - Int
+     - Master
+     - 需要转换成以太网
 
-*表：EnOS™ Edge支持的行业标准规约*
 
-<table>
-  <tr>
-    <td>设备厂家</td>
-    <td>型号</td>
-    <td>备注</td>
-  </tr>
-  <tr>
-    <td>Growatt</td>
-    <td>Growatt</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td rowspan="2">Goodwe</td>
-    <td>GoodweTcp</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>GoodweWebService</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Jinlang</td>
-    <td>JinlangTCP</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>KSTAR(ksg)</td>
-    <td>KSTAR(ksg)</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Lekong</td>
-    <td>Lekong</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Omnik</td>
-    <td>Omnik</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>TaiDa</td>
-    <td>TaiDa</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Taoke</td>
-    <td>Taoke</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>SunGrow</td>
-    <td>SunGrow</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Apsystems</td>
-    <td>Apsystems</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>YunKong</td>
-    <td>YunKong</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td rowspan="2">Trannergy</td>
-    <td>Trannergy</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Trinasolar</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Solarman</td>
-    <td>Solarman</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Aifu</td>
-    <td>Aifu</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td rowspan="2">Dingyang</td>
-    <td>dingyangTcp</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>dingyangTcp-jingfuyuan</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>SMA</td>
-    <td>SMA</td>
-    <td></td>
-  </tr>
-</table>
+.. list-table:: 表：EnOS™ Edge支持的行业标准规约
+
+   * - 设备厂家
+     - 型号
+   * - Growatt
+     - Growatt
+   * - Goodwe
+     - GoodweTcp
+   * - Goodwe
+     - GoodweWebService
+   * - Jinlang
+     - JinlangTCP
+   * - KSTAR(ksg)
+     - KSTAR(ksg)
+   * - Lekong
+     - Lekong
+   * - Omnik
+     - Omnik
+   * - TaiDa
+     - TaiDa
+   * - Taoke
+     - Taoke
+   * - SunGrow
+     - SunGrow
+   * - Apsystems
+     - Apsystems
+   * - YunKong
+     - YunKong
+   * - Trannergy
+     - Trannergy
+   * - Trannergy
+     - Trinasolar
+   * - Solarman
+     - Solarman
+   * - Aifu
+     - Aifu
+   * - Dingyang
+     - dingyangTcp
+   * - Dingyang
+     - dingyangTcp-jingfuyuan
+   * - SMA
+     - SMA
+
+
+<!--end-->

@@ -4,19 +4,16 @@ EnOS™ Edge作用EnOS™平台的前置数据采集终端，其性能主要表�
 
 因此在实际使用场景中，很难准确给出Edge支持的测点数量。根据内部性能测试结果给出以下Edge支持的测点数量示例，供使用参考，Edge在不同场景中详细的接入测点支持能力可以联系远景技术团队给出。
 
-*表：EnOS™ Edge支持可接入的测点数量参考*
+.. list-table:: 表：EnOS™ Edge支持可接入的测点数量参考
+   :widths: auto
 
-<table>
-  <tr>
-    <td>硬件配置</td>
-    <td>测点采样频率说明</td>
-    <td>支持的测点数量推荐</td>
-  </tr>
-  <tr>
-    <td>Linux OS / 4 Core CPU / 8G Memory</td>
-    <td>AI，10秒级采样，42%<br>
-      AI，秒级采样，1%<br>
-      DI，变化上送，57%</td>
-    <td>20000</td>
-  </tr>
-</table>
+   * - 硬件配置
+     - 测点采样频率说明
+     - 支持的测点数量推荐
+   * - Linux OS / 4 Core CPU / 8G Memory
+     - AI，10秒级采样，42%
+       AI，秒级采样，1%
+       DI，变化上送，57%
+     - 20000
+
+<!--end-->
