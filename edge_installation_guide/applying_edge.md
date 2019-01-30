@@ -1,7 +1,6 @@
 # 在云端注册Edge
 
 1. 登录到注册Edge的云端地址：
-
    根据不同环境，登录到对应的地址注册Edge并获取Edge的SN号。各环境的地址见下表中所示。
 
    .. list-table:: 表： Web配置中心各环境访问地址
@@ -17,6 +16,7 @@
         - https://eos.envisioncn.com/configuration/
       * - 中国 Azure
         - https://eosaz.envisioncn.com/configuration/
+
 
 2. 按照如下截图指导操作注册Edge。
 

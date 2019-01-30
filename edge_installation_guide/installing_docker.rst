@@ -11,7 +11,7 @@
    * - 指令
      - 备注
    * - yum install docker
-     - **注意**: 安装docker，\#请注意，这里不是docker-io，是docker。
+     - 安装docker，请注意，这里不是docker-io，是docker。
    * - systemctl start docker
      - 启动docker，这里注意下，centos 7是采用systemctl来管理启动项
    * - systemctl enable docker
@@ -25,11 +25,11 @@
    * - 指令
      - 备注
    * - mkdir /root/dockerdata/box
-     -
+     - --
    * - mkdir /root/dockerdata/data
-     -
+     - --
    * - mkdir /root/dockerdata/config
-     -
+     - --
    * - vim /etc/hosts
        10.21.3.16 registry.envisioncn.com
      - 添加解析

@@ -8,19 +8,19 @@
    * - 指令
      - 备注
    * - vim/etc/sysconfig/network-scripts/ifcfg-ens32
-     - null
+     - --
    * - DEVICE=ens32
-     - null
+     - --
    * - IPADDR=xxx.xxx.xxx.xxx
      - 使用已规划的IP地址
    * - NETMASK=255.255.255.0
-     - null
+     - --
    * - GATEWAY=yyy.yyy.yyy.yyy
      - 使用已规划的网关
    * - ONBOOT=yes
-     - null
+     - --
    * - NAME=ens32
-     - null
+     - --
    * - DNS1=zzz.zzz.zzz.zzz
      - 使用已规划的DNS
 
@@ -31,9 +31,9 @@
    * - 指令
      - 备注
    * - systemctl restart sshd
-     - null
+     - --
    * - systemctl enable sshd
-     - null
+     - --
 
 
 完成以上配置后，既可以远程管理Edge及进行后续的安装操作。

@@ -28,6 +28,6 @@ Edge接入配置具体步骤请参见以下章节：
 .. toctree::
    :maxdepth: 1
 
-   登录到Web配置中心 <https://docs.envisioniot.com/docs/enos-edge/zh_CN/latest/web_configuration_center_user_guide/index.html>
+   登录到Web配置中心 <https://www.envisioniot.com/docs/enos-edge/zh_CN/latest/web_configuration_center_user_guide/index.html>
    configuring_edge_connection
    managing_device_templates
