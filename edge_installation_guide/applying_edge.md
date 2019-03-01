@@ -23,11 +23,11 @@
    点击下图中位置1按钮，创建Edge。
 
    .. image:: media/image062.png
-      :width: 550px
+      
 
    在下图中红色框1中输入创建Edge的描述名称，同时复制红色框2中的SN，保存下来后续会使用到。
 
    .. image:: media/image063.png
-      :width: 550px
+      
 
 <!--end-->

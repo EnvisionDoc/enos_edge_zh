@@ -4,7 +4,7 @@
 
 .. image:: media/image005.png
    :alt: 图：Edge数据处理流程
-   :width: 700px
+   
 
 如上图所示，模型化的过程主要有：
 

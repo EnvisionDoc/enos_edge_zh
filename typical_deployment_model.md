@@ -8,7 +8,7 @@ Edge通过防火墙与云端建立的VPN链路进行通讯，另一侧通过以�
 
 .. image:: media/image002.png
    :alt: 图：部署模式一
-   :width: 750px
+   
 
 ## 部署模式二
 
@@ -16,7 +16,7 @@ Edge部署在轻量化的无线硬件产品中（如Dell 3002），直接通过3
 
 .. image:: media/image003.png
    :alt: 图：部署模式二
-   :width: 750px
+   
 
 ## 部署模式三
 
@@ -24,6 +24,6 @@ Edge部署在轻量化的无线硬件产品中（如Dell 3002），直接通过3
 
 .. image:: media/image004.png
    :alt: 图：部署模式三
-   :width: 750px
+   
 
 <!--end-->

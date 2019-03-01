@@ -6,13 +6,12 @@
 
 .. image:: media/image008.png
    :alt: 图：接入中心首页
-   :width: 800px
+
 
 接入配置的典型流程如下图所示：
 
 .. image:: media/image009.png
-   :alt: 图：通信配置与调试流程   
-   :width: 730px
+   :alt: 图：通信配置与调试流程
 
 ## 添加盒子
 
@@ -22,7 +21,7 @@
 
 .. image:: media/image010.png
    :alt: 图：添加盒子
-   :width: 800px
+
 
 通常一个场站只需一个盒子，对于规模较大的场站，由于其包含的点数较多，而一个盒子能够接入的点数有限，此时会添加多个盒子，系统管理员会根据用户提供的场站点数及采样频率系统告知用户需要几个盒子，每个盒子能够接入多少设备。
 
@@ -34,7 +33,7 @@
 
 .. image:: media/image011.png
    :alt: 图：添加连接示例
-   :width: 800px
+
 
 .. note:: 根据实际需要，一个盒子下可添加多条连接，根据规约类型及盒子类型选择连接方式。
 
@@ -44,7 +43,7 @@
 
 .. image:: media/image012.png
    :alt: 图：向连接中添加设备
-   :width: 800px
+
 
 **添加设备**
 
@@ -54,7 +53,7 @@
 
 .. image:: media/image013.png
    :alt: 图：添加设备
-   :width: 800px
+
 
 **更新设备信息**
 
@@ -62,17 +61,17 @@
 
 .. image:: media/image014.png
    :alt: 图：更新设备信息
-   :width: 800px
+
 
 .. image:: media/image015.png
    :alt: 图：设备连接信息表
-   :width: 800px
+
 
 点击设备后的 |016| 按钮可以从连接中删除此设备。若需批量删除设备，则勾选此连接下需要删除的设备，而后点击批量删除按钮即可，如下图所示：
 
 .. image:: media/image017.png
    :alt: 图：批量删除设备
-   :width: 800px
+
 
 ## 配置逻辑地址或偏移量
 
@@ -84,11 +83,11 @@
 
    .. image:: media/image019.png
       :alt: 图：逐个设备配置逻辑地址及偏移量
-      :width: 800px
+
 
    .. image:: media/image020.png
       :alt: 图：逐个设备配置逻辑地址及偏移量
-      :width: 800px
+
 
 2. 批量配置
 
@@ -96,7 +95,7 @@
 
    .. image:: media/image015.png
       :alt: 图：设备连接信息表
-      :width: 800px
+
 
 .. note:: 导出的表中支持AI，DI，PI，AO，DO，PO偏移量的配置。基本的配置方式为用短划线连接，如0-50，当同时存在多个偏移量时，可用\#隔离，如0-50\#1000-1050。
 
@@ -106,7 +105,7 @@
 
 .. image:: media/image021.png
    :alt: 图：发布配置到盒子
-   :width: 800px
+
 
 ## 通信测试
 
@@ -114,11 +113,11 @@
 
 .. image:: media/image022.png
    :alt: 图：传输层通信中断
-   :width: 800px
+
 
 .. image:: media/image023.png
    :alt: 图：传输层通信正常
-   :width: 800px
+
 
 上述通信中断的原因有多种，可能是配置没有下发，可能是配置有误，也可能是场站端的通信有异常等等。为此，需要有进一步的调试来帮助用户定位问题所在。EnOS™提供了通信测试功能以帮助实现此目标。
 
@@ -126,11 +125,11 @@
 
 .. image:: media/image024.png
    :alt: 图：批量测试功能
-   :width: 800px
+
 
 .. image:: media/image025.png
    :alt: 图：批量通信测试页面
-   :width: 800px
+
 
 下面分别介绍各功能的含义及用法。
 
@@ -138,13 +137,13 @@
 
 .. image:: media/image026.png
    :alt: 图：批量通信测试概览
-   :width: 800px
+
 
 批量测试页面如下图所示，在最上方的下拉菜单可以切换连接，连接的参数显示与下拉菜单下方：
 
 .. image:: media/image027.png
    :alt: 图：切换连接
-   :width: 400px
+
 
 点击上方的 **开始/暂停** 按钮，可以启动或暂停通信测试功能。
 
@@ -152,7 +151,7 @@
 
 .. image:: media/image028.png
    :alt: 图：通信测试功能切换
-   :width: 400px
+
 
 ### 数据
 
@@ -160,13 +159,13 @@
 
 .. image:: media/image029.png
    :alt: 图：数据功能
-   :width: 800px
+
 
 同时支持遥测、遥信点的置数功能。点击**添加置数**，可设置数值，点击**发送**后可向云端发送所设置的值。点击一次发送一次，不会终止原始数据的上传，相当于插了一个值送上云端。
 
 .. image:: media/image030.png
    :alt: 图：置数功能
-   :width: 800px
+
 
 ### 原始报文
 
@@ -174,7 +173,7 @@
 
 .. image:: media/image031.png
    :alt: 图：原始报文功能
-   :width: 800px
+
 
 ### 日志
 
@@ -182,7 +181,7 @@
 
 .. image:: media/image032.png
    :alt: 图：日志功能
-   :width: 800px
+
 
 ### 控制台
 
@@ -192,7 +191,7 @@
 
 .. image:: media/image033.png
    :alt: 图：控制台功能
-   :width: 800px
+
 
 ### 单台设备的通信测试
 
@@ -200,7 +199,7 @@
 
 .. image:: media/image034.png
    :alt: 图：单台设备通信测试功能
-   :width: 800px
+
 
 
 .. |016| image:: media/image016.png
