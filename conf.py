@@ -193,7 +193,7 @@ latex_elements = {
         %\fancyhead[RO]{\small \nouppercase{\rightmark}}
         %\fancyhead[LE]{\small \nouppercase{\leftmark}}
 
-        \fancyfoot[R]{\ifthenelse{\isodd{\value{page}}}{{\tiny EnOS Edge} }{\href{https://www.envisioniot.com}{\tiny IOT}}}
+        \fancyfoot[R]{\ifthenelse{\isodd{\value{page}}}{{\tiny EnOS Edge} }{\href{https://www.envisioniot.com}{\tiny Envision digital}}}
 
         %%% page number
         \fancyfoot[CO, CE]{\thepage}
@@ -253,10 +253,13 @@ latex_elements = {
             \huge \textmd{版本}\textbf{ latest}
             %% \vfill adds at the bottom
             \vfill
-            \centerline{\fontsize{16pt}{\baselineskip}\selectfont \textbf{远景智能}}
-            \vspace{3mm}
-            \renewcommand{\today}{\number\year 年 \number\month 月 \number\day 日}
-            \centerline{\today\\}
+                       \centering
+                       \fontsize{16pt}{\baselineskip}\selectfont \textbf{远景智能}
+
+                       \vspace{3mm}
+
+                       \renewcommand{\today}{\number\year 年 \number\month 月 \number\day 日}
+                       \today\\
         \end{titlepage}
 
         \clearpage
