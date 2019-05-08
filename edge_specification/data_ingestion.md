@@ -94,10 +94,6 @@ Edge的数据采集能力，主要是基于Edge对各种通讯规约的支持能
      - Int/Float
      - Client/Server
      - 以太网
-   * - DNP3.0
-     - Int/Float
-     - Client
-     - 以太网
    * - OPC-DA
      - Uint/Double/Float/Int/Long/Char/Ushort/Short/Bool
      - Client
@@ -122,50 +118,16 @@ Edge的数据采集能力，主要是基于Edge对各种通讯规约的支持能
      - Int
      - Master
      - 需要转换成以太网
+   * - BACnet
+     - Bool/Double/Uint/Int/Real/Enumerated
+     - Client
+     - 以太网
+   * - ADS
+     - Uint/Double/Float/Int/Long/Ushort/Short/
+     - Client
+     - 以太网
 
-
-.. list-table:: 表：EnOS™ Edge支持的行业标准规约
-
-   * - 设备厂家
-     - 型号
-   * - Growatt
-     - Growatt
-   * - Goodwe
-     - GoodweTcp
-   * - Goodwe
-     - GoodweWebService
-   * - Jinlang
-     - JinlangTCP
-   * - KSTAR(ksg)
-     - KSTAR(ksg)
-   * - Lekong
-     - Lekong
-   * - Omnik
-     - Omnik
-   * - TaiDa
-     - TaiDa
-   * - Taoke
-     - Taoke
-   * - SunGrow
-     - SunGrow
-   * - Apsystems
-     - Apsystems
-   * - YunKong
-     - YunKong
-   * - Trannergy
-     - Trannergy
-   * - Trannergy
-     - Trinasolar
-   * - Solarman
-     - Solarman
-   * - Aifu
-     - Aifu
-   * - Dingyang
-     - dingyangTcp
-   * - Dingyang
-     - dingyangTcp-jingfuyuan
-   * - SMA
-     - SMA
+.. note:: 该表是支持规约的大类，Edge详细准备的规约支持列表请参看附件。
 
 
 <!--end-->

@@ -7,5 +7,4 @@
    :maxdepth: 1
 
    recommended_hardware
-   dell_3001
-   dell_5000
+   
