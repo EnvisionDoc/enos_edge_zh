@@ -1,7 +1,6 @@
 # 已支持的规约列表
 
 .. csv-table::
-   :widths: auto
 
    "A到J", "I到W"
    "ADS", "Involar逆变器通讯"
