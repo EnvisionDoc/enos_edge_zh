@@ -118,7 +118,10 @@ html_theme = 'sphinx_enos_theme'
 # further.  For a list of options available for each theme, see the
 # documentation.
 #
-# html_theme_options = {}
+html_theme_options = {
+    'copyright_zh': '© 2019 Envision Digital. All Rights Reserved.',
+
+}
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -250,7 +253,7 @@ latex_elements = {
 
             \vspace{5mm}
 
-            \huge \textmd{版本}\textbf{ latest}
+            \huge \textmd{版本}\textbf{ reorg}
             %% \vfill adds at the bottom
             \vfill
                        \centering
