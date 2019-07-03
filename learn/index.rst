@@ -16,4 +16,6 @@ Edge各功能详情请参见以下章节：
    communication
    data_resolution
    capacity
+   typical_deployment_model
+   edge_security
 

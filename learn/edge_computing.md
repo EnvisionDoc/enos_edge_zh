@@ -58,7 +58,7 @@ EnOS预置的公式列表如下。为了说明方便，在列表中，模型测�
 
 ## 数据处理脚本
 
-Groovy语言的语法参见[Apache Groovy](www.groovy-lang.org)。但Groovy一些高级功能，如定义一个新类，在EnOS中被禁用。
+Groovy语言的语法参见www.groovy-lang.org。但Groovy一些高级功能，如定义一个新类，在EnOS中被禁用。
 
 为了能够使用Groovy脚本来完成设备数据的实时处理，EnOS提供了一些可以在脚本中使用的方法，用户可以使用这些方法完成模型点数据的读取、设置，以及设备属性的读取等。
 

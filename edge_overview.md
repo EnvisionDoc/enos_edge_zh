@@ -26,7 +26,7 @@ EnOS™ Edge作为远景EnOS™ IoT平台的数据采集前置，具备设备快
 
 与云端创建的设备模型相匹配，支持云端下发控制指令到具体设备。
 
-详细信息，参考[设备控制](learn/edge_specification/device_control)
+详细信息，参考[设备控制](learn/device_control)
 
 ### 云端自动同步
 
@@ -44,7 +44,7 @@ EnOS™ Edge作为云端功能的延伸，通过与云端深度集成，在保�
   
 - Edge中累计了常用的边缘计算的函数算子，同时支持对算子进行扩展；
 
-参见[边缘计算](learn/edge_specification/edge_computing)
+参见[边缘计算](learn/edge_computing)
 
 ### 断点续传
 
