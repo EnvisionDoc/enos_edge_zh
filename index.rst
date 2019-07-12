@@ -31,7 +31,6 @@ EnOS™ Edge
    :maxdepth: 2
    :caption: 操作
 
-   howto/edge_installation_guide/index
    howto/console_configuration/index
 
 .. toctree::

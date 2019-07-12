@@ -13,8 +13,7 @@ Edge各功能详情请参见以下章节：
    edge_computing
    breakpoint_resumption
    device_control
-   communication
-   data_resolution
+   data_precision
    capacity
    typical_deployment_model
    edge_security
