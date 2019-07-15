@@ -3,6 +3,7 @@
 设备根据其支持的规约与EnOS Edge通信，Edge根据规约中包含的点表模板，将指定的采集点和控制点信息上传到EnOS。EnOS再根据云端定义的Edge模板，将点表中的原始数据，经过映射或者脚本的处理，关联到该设备在EnOS上所属模型的属性上。
 
 .. image:: ../media/edge_work_flow.png
+   :width: 400px
 
 ## 通过规约与EnOS连接
 
