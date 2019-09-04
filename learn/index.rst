@@ -17,4 +17,6 @@ Edge各功能详情请参见以下章节：
    capacity
    typical_deployment_model
    edge_security
+   capability_comparison
+   
 

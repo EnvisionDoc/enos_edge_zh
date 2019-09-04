@@ -22,6 +22,7 @@ EnOS™ Edge
    learn/data_resolution
    learn/capacity
    learn/protocol_development
+   learn/capability_comparison
 
 .. toctree::
    :maxdepth: 2

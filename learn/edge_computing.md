@@ -6,8 +6,12 @@ Edge中所有边缘计算都是依附模板而存在，即如果将针对某一�
 
 在**Edge网关 > 模板配置 > 模板编辑**的部分，用户可以使用以下边缘计算功能：
 
-- 设置点映射，将将设备端的采集点经过一定运算加工之后，映射到预先定义的模型测点上；
+- 设置点映射，将将设备端的采集点经过一定运算加工之后，映射到预先定义的模型测点上。
 - 使用Groovy脚本对数据进行处理。
+
+在**EnOS Edge > Edge管理 > Edge详情**中，用户可以使用以下边缘计算功能：
+
+- 编排流数据算子，创建流数据分析任务，满足更多复杂场景的业务计算。
 
 ## 点映射
 
@@ -99,3 +103,38 @@ Groovy语言的语法参见www.groovy-lang.org。但Groovy一些高级功能，�
   }
 
   ```
+
+## StreamSets算子参考说明
+
+EnOS™ Edge流数据分析服务开放多个底层封装好的StreamSets算子，支持主数据关联、聚合算法、插补策略、基于事件时间的时间窗口、以及阈值过滤等计算。供开发者通过编排算子创建流数据分析任务，满足更多复杂场景的业务计算。EnOS Edge支持以下算子：
+
+### 资产主数据算子
+
+- [TSL Asset Lookup](/docs/data-asset/zh_CN/latest/reference/streamsets/tsl_asset_lookup)
+- [TSL Child Asset Lookup](/docs/data-asset/zh_CN/latest/reference/streamsets/tsl_child_asset_lookup)
+- [TSL Parent Asset Lookup](http://www.envisioniot.com/docs/data-asset/zh_CN/latest/reference/streamsets/tsl_parent_asset_lookup.html)
+- [TSL Point Lookup](/docs/data-asset/zh_CN/latest/reference/streamsets/tsl_point_lookup)
+- [Site Lookup](/docs/data-asset/zh_CN/latest/reference/streamsets/site_lookup)
+
+### 数据处理算子
+
+- [Point Selector](/docs/data-asset/zh_CN/latest/reference/streamsets/point_selector)
+- [Time Sort](/docs/data-asset/zh_CN/latest/reference/streamsets/time_sort)
+- [Window Aggregator](/docs/data-asset/zh_CN/latest/reference/streamsets/window_aggregator)
+- [Fixed Batch Pivotor](/docs/data-asset/zh_CN/latest/reference/streamsets/fixed_batch_pivotor)
+- [Earliest Change Record Appender](/docs/data-asset/zh_CN/latest/reference/streamsets/earliest_change_record_appender)
+- [State Capturer](/docs/data-asset/zh_CN/latest/reference/streamsets/state_capturer)
+
+### 其他数据处理算子
+
+- [HTTP Lookup](/docs/data-asset/zh_CN/latest/reference/streamsets/http_lookup)
+
+### 数据质量算子
+
+- [Late Point Filter](/docs/data-asset/zh_CN/latest/reference/streamsets/late_point_filter)
+- [MinMax Ouliter](/docs/data-asset/zh_CN/latest/reference/streamsets/min_max_outlier)
+
+### 电量计算算子
+
+- [Last Record Appender](/docs/data-asset/zh_CN/latest/reference/streamsets/last_record_appender)
+- [Delta Calculator](/docs/data-asset/zh_CN/latest/reference/streamsets/delta_calculator)

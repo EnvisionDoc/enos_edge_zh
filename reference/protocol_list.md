@@ -12,14 +12,23 @@
 - 标准MODBUS TCP
 - 标准OPC-DA
 - 标准OPC-XML
+- CAN
 - chnt_pd7777
+- C_Net
+- DDS_Demo
 - Delta-RPI-M
+- ercot_pricing
 - goodWe
 - hkenergy
+- iec104_GateKeeperClt
 - iec104_siemens
+- iec104_th
+- iec104_wuling
 - JingLang
 - Involar逆变器通讯
+- KeppelOurAir
 - KsgProtocol
+- mettower_clt
 - ModbusRtuUDP
 - modbus_master_ex_cf
 - modbus_master_ex_gsl
@@ -27,13 +36,20 @@
 - modbus_master_ex_sc
 - modbus_master_ex_sc_kz
 - modbus_master_monitor
+- modbus_tcp_m
 - modbus_tracker
 - Net_Gap_C
+- NmsProtocol
+- omnk
 - PmuProtocol
 - qxy_dglg
 - qxy_hc
+- snmp_c
+- SolaJson
+- SolarMan
 - Sungrow
 - TaokeProtocol
+- Trannergy
 - weather_client
 - wifiOmniProtocol
 
