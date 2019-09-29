@@ -8,8 +8,8 @@ Edge作为一个边缘计算平台，具备应用管理的能力。你可以在E
 
 ## 开始前准备
 
-- 你需要有Edge管理操作权限，如果没有请联系组织管理员添加，参见[策略，角色，与权限](/docs/iam/zh_CN/latest/access_policy)。
-- 你已经在EnOS上注册了应用，参见[管理应用](/docs/app-development/zh_CN/latest/managing_apps)。
+- 你需要有Edge管理操作权限，如果没有请联系组织管理员添加，参见[策略，角色，与权限](/docs/iam/zh_CN/2.0.9/access_policy)。
+- 你已经在EnOS上注册了应用，参见[管理应用](/docs/app-development/zh_CN/2.0.9/managing_apps)。
 
 ## 步骤
 

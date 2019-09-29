@@ -35,6 +35,12 @@ EnOS™ Edge
    howto/console_configuration/index
 
 .. toctree::
+   :maxdepth: 2
+   :caption: Tutorial
+
+   tutorial/connecting_edge
+
+.. toctree::
    :maxdepth:: 2
    :caption: 参考
    
