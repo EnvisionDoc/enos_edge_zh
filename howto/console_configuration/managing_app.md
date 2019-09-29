@@ -8,7 +8,7 @@
 
 ## 开始前准备
 
-- 你需要有Edge管理操作权限，如果没有请联系组织管理员添加，参见[策略，角色，与权限](/docs/iam/zh_CN/latest/access_policy)。
+- 你需要有Edge管理操作权限，如果没有请联系组织管理员添加，参见[策略，角色，与权限](/docs/iam/zh_CN/2.0.9/access_policy)。
 - 你已经在一个Edge实例上上线了一个应用，参见[在Edge上添加并上线应用](adding_app)。
 
 ## 管理应用详细信息
@@ -23,7 +23,7 @@
 
 3. 根据需要修改应用的基本信息，管理权限、菜单、用户，或审批请求。
 
- 具体操作，参见[管理应用](/docs/app-development/zh_CN/dev/managing_apps)。
+ 具体操作，参见[管理应用](/docs/app-development/zh_CN/2.0.9/managing_apps)。
 
 ## 下线并删除应用
 

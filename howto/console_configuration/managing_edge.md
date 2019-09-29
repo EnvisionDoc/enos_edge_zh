@@ -4,8 +4,8 @@
 
 ## 开始前准备
 
-- 有Edge管理操作权限，如果没有需联系组织管理员添加。有关EnOS内的用户权限，参见[策略，角色，与权限](/docs/iam/zh_CN/latest/access_policy)。
-- 完成Edge模型、产品和设备的创建。参见[设备管理](/docs/device-connection/zh_CN/latest/device_management_overview)。Edge模型的模型名称必须为 **EnOS_Edge_Standard_Model**， Edge产品的产品名称必须为 **EnOS_Edge_Standard_Product**。
+- 有Edge管理操作权限，如果没有需联系组织管理员添加。有关EnOS内的用户权限，参见[策略，角色，与权限](/docs/iam/zh_CN/2.0.9/access_policy)。
+- 完成Edge模型、产品和设备的创建。参见[设备管理](/docs/device-connection/zh_CN/2.0.9/device_management_overview)。Edge模型的模型名称必须为 **EnOS_Edge_Standard_Model**， Edge产品的产品名称必须为 **EnOS_Edge_Standard_Product**。
 
 ## 添加Edge
 

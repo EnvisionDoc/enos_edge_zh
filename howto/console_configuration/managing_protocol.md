@@ -8,7 +8,7 @@
 
 ## 开始前准备
 
-你需要有管理规约的权限。更多信息，参见[策略，角色，与权限](/docs/iam/zh_CN/latest/access_policy)。
+你需要有管理规约的权限。更多信息，参见[策略，角色，与权限](/docs/iam/zh_CN/2.0.9/access_policy)。
 
 ## 编辑规约
 
