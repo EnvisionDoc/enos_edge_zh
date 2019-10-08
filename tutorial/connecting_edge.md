@@ -1,134 +1,120 @@
-# 通过EnOS Edge将设备连接至EnOS
+# Connecting Edge to EnOS and Simulated Sub-devices
 
-本教程会引导你逐步了解如何通过EnOS Edge将设备连接到EnOS Cloud。
+The prerequisite to using Edge is connecting Edge to EnOS cloud and the sub-devices. This tutorial uses Edge installed on a Dell Edge Gateway 3000, a protocol simulator program, and EnOS to explain:
 
-作为软件，EnOS Edge可以部署在多种硬件上。在本教程中，EnOS Edge软件安装在Dell Edge Gateway 3000上。故本教程以Edge软件已经正确安装为前提，因此不包括安装过程。有关如何安装，参见[安装指南](../howto/edge_installation_guide/index)。
+- How to connect Edge to EnOS cloud
+- How to use your laptop to simulate sub-devices
+- How to connect Edge to simualted sub-devices
 
-## 应用场景
+## Step 1: Defining Models
 
-本教程适用的场景如下：
+A model is the abstraction of the features of an object connected to EnOS. It defines the features of a device, including attributes, measuring points, services, and events. For more information about models, see [Thing Model](/docs/device-connection/en/2.0.9/howto/model/model_overview).
 
-- 在笔记本电脑上安装了IEC104模拟器，用以模拟通过IEC104协议进行通信的三个电表。
+The model of Edge has been provided by EnOS as a public model. Go to **Public** tab in **Model** and search for *EnOS_Edge_Standard_Model*. You can view its basic information and feature definitions in by clicking **View** .
 
-- 作为子设备连接到EnOS Edge的模拟设备。
+In this step, we need to create models for the simulated sub-devices before they can be connected to EnOS. 
 
-- EnOS Edge已连接到网络，并通过标准协议MQTT与EnOS Cloud通信。
+1. Go to **Model** . In **Private** tab, click **New Model** .
 
-
-## 步骤1：定义模型
-
-模型是连接到EnOS的对象功能的抽象。它定义了设备的功能，包括属性，测点，服务和事件。有关模型的更多信息，参见[物模型](/docs/device-connection/zh_CN/2.0.9/howto/model/model_overview)。
-
-EnOS Edge的模型已作为EnOS的公共模型提供。进入 **模型 > 公有模型**，搜索 *EnOS_Edge_Standard_Model*，然后点击 **查看** 查看其基本信息和功能定义。
-
-在此步骤中，需要先为模拟的子设备创建模型，然后才能将其连接到EnOS。
-
-
-1. 进入 **模型**，在 **私有模型** 标签下点击 **创建模型**。
-
-2. 在 **创建模型** 窗口，填写如下字段：
-
+2. In the **New Model** pop-up, fill in the fields as follows:
   
-   .. csv-table:: 模型信息
-      :header: "字段", "值"
+   .. csv-table:: Model Information
+      :header: "Field", "Value"
       :widths: auto
 
-      "模型标识符", "TrainingMeter"
-      "模型名称", "TrainingMeter"
-      "分类", "Training"
-      "模型关系", "无"
-      "模型模板", "无"
-      "模型描述", "Meter model for training"
+      "Identifier", "TrainingMeter"
+      "Model Name", "TrainingMeter"
+      "Catetory", "Training"
+      "Created From", "No"
+      "Source Model", "No"
+      "Description", "Meter model for training"
 
    .. image:: ../media/tutorial_creating_model.png
 
-<!--以上字段都可省略“模型”-->
+3. Click **Edit** in the **Operations** column for **TrainingMeter**. Go to **Feature Definition** tab and create 4 measuring points by doing the following for every measuring point:
 
-3. 点击 **TrainingMeter** 模型 **操作** 列中的 **编辑**。进入 **功能定义** 标签，按照以下步骤分别创建4个测点：
+   1. Click **Add**.
 
-   1. 点击 **新增**。
+   2. Fill in the fields as described below in the pop-up.
 
-   2. 填写弹出窗口中所需的字段。
+   3. Click **Confirm**.
 
-   3. 点击 **确认**。
+   The information of the 4 measuring points are as follows:
 
-   4个测点的信息如下：<!--测点的英文需统一为measurement point，英文文档里写的是measuring point-->
-
-   .. csv-table:: 测点信息
-      :header: "测点", "功能类型", "名称", "标识符", "测点类型", "是否有质量位", "数据类型", "默认值", "单位", "是否必填", "描述"
+   .. csv-table:: Measuring Point Information
+      :header: "Measuring Point", "Feature Type", "Name", "Identifier", "Point Type", "Quality Indicator", "Data Type", "Default Value", "Unit", "Required", "Description"
       :widths: auto
 
-      "1", "测点", "Ua", "Meter.Ua", "AI", "无", "double", "电压：伏特 | V", "留空"
-      "2", "测点", "P", "Meter.ActivePower", "AI", "无", "double", "功率：千瓦 | kW", "留空"
-      "3", "测点", "Q", "Meter.ReactivePower", "AI", "无", "double", "功率：千乏 | kVar", "留空"
-      "4", "测点", "Ia", "Meter.Ia", "AI", "无", "double", "电流：安培 | A", "留空"
+      "1", "Measurement Points", "Ua", "Meter.Ua", "AI", "No", "double", "Electric Potential: volt | V", "Leave it blank"
+      "2", "Measurement Points", "P", "Meter.ActivePower", "AI", "No", "double", "Power: kilowatt | kW", "Leave it blank"
+      "3", "Measurement Points", "Q", "Meter.ReactivePower", "AI", "No", "double", "Power: KiloVolt Ampere Reactive | kVar", "Leave it blank"
+      "4", "Measurement Points", "Ia", "Meter.Ia", "AI", "No", "double", "Electric Current: ampere | A", "Leave it blank"
 
    .. image:: ../media/tutorial_create_measuring_points.png
 
+You have now created the model for simulated sub-devices we will use to connect to Edge. 
 
-现在，你已为即将连接到Edge的模拟子设备创建了模型。
+## Step 2: Creating Products
 
-## 步骤2：创建产品
+Now that we have defined the model, we need to create products based on the device and Edge models. 
 
-完成了模型定义后，需要基于设备和Edge模型创建产品。
+A product is a collection of devices with identical features. While a model defines aspects of a concrete device from 4 aspects (atrributes, measuring points, services, and events), a product further defines the communication parameters for a concrete device.
 
-产品是具有相同功能的设备的集合。当模型从4个方面（属性，测点，服务和事件）抽象设备功能时，产品会进一步定义设备的通信参数。
+1. Go to **Device Management > Product**. Click **New Product**.
 
-1. 进入 **设备管理 > 产品**，点击 **创建产品**。
-
-2. 在 **创建产品** 窗口，填写如下字段：
+2. In the **New Product** pop-up, fill in the fields as follows:
   
-   .. csv-table:: 虚拟设备的产品信息
-      :header: "字段", "值"
+   .. csv-table:: Product Information for Simulated Devices
+      :header: "Field", "Value"
       :widths: auto
 
-      "产品名称", "training_meter"
-      "节点类型", "设备"
-      "设备模型", "TrainingMeter"
-      "数据格式", "Json"
-      "证书双向认证", "禁用"
-      "产品描述", "Electric meter for training"
+      "Product Name", "training_meter"
+      "Asset Type", "Device"
+      "Model", "TrainingMeter"
+      "Data Type", "JSON"
+      "Certificate-Based Authentication", "Disabled"
+      "Description", "Electric meter for training"
 
    .. image:: ../media/tutorial_creating_product_for_device.png
 
-这样，模拟电表的产品就创建完成了。现在，可以对Edge设备进行相同的操作。
+You have created the product for simulated meters. Now let's do the same thing for the Edge device.
 
 .. image:: ../media/tutorial_creating_product_for_edge.png
 
-下面可以开始准备在EnOS上创建设备实例。
+Now we are ready to create the concrete devices on EnOS.
 
-## 步骤3：创建设备
+## Step 3: Creating Devices
 
-设备是由产品创建而来，因此它不仅继承了模型的基本功能，还继承了产品的通信参数（如，用于认证的产品密钥和产品密钥）。
+A device instance on EnOS represents a concrete device in the physical world. A device is created from a product so that it inherits not only the basic features of the model, but also the communication parameters of the product (such as the product secret and product secret used for authentication).
 
-此步骤会在EnOS上为Edge及其子设备创建设备。
+In this step we need to create devices on EnOS for Edge and its sub-devices.
 
-1. 进入 **设备管理 > 设备管理**，点击 **添加设备**。
+1. Go to **Device Management > Device**. Click **New Device**.
 
-2. 在 **添加设备** 窗口，填写以下字段:
+2. In the **New Device** pop-up, fill in the fields as follows:
   
-   .. csv-table:: Edge设备信息
-      :header: "字段", "值"
+   .. csv-table:: Device Information for Edge
+      :header: "Field", "Value"
       :widths: auto
 
-      "产品", "EnOS_Edge_Standard_Product"
-      "Device Key", "留空"
-      "设备名称", "Edge01"
-      "时区/城市", "UTC+08:00"
+      "Product", "EnOS_Edge_Standard_Product"
+      "Device Key", "Leave it blank"
+      "Device Name", "Edge 01"
+      "Time Zone/City", "UTC+08:00"
       "edge_type", "0: EdgeGateway"
 
    .. image:: ../media/tutorial_creating_device_for_edge.png
 
-这样，Edge的设备实例就创建完成。现在，对子设备执行相同操作。在这种情况下，使用笔记本电脑模拟将要连接到Edge的三个电表，将它们命名为“meter01”，“meter02”和“meter03”。它们的其他属性如下所示：
+A device instance for Edge has been created. Now let's do the same thing for the sub-devices. In this scenario, we will use our laptop to simulate three electric meters that will be connected to Edge. We will name them "meter01", "meter02", and "meter03". Their other attributes are listed as follows:
 
-.. csv-table:: 子设备（电表）信息
-   :header: "字段", "值"
+.. csv-table:: Device Information for Sub-devices (Electric meter)
+   :header: "Field", "Value"
    :widths: auto
 
-   "产品", "training_meter"
-   "Device Key", "留空"
-   "设备名称", "meter01, meter02, and meter03"
-   "时区/城市", "UTC+08:00"
+   "Product", "training_meter"
+   "Device Key", "Leave it blank"
+   "Device Name", "meter01, meter02, and meter03"
+   "Time Zone/City", "UTC+08:00"
 
 <!--The end-->
 
@@ -346,3 +332,19 @@ Click |view| for any device to view the data that is coming from our simulator.
 .. image:: ../media/tutorial_device_data.png
 
 Congratulations! You have learnt how to connect an Edge device to EnOS, and use a simulator to simulate devices transferring data through Edge to EnOS cloud.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
