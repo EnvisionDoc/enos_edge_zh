@@ -141,7 +141,7 @@ EnOS Edge的模型已作为EnOS的公共模型提供。进入 **模型 > 公有�
 
 1. 进入 **资产树**，点击左上角的 |create|。
 
-   .. |create| image:: ../media/button_new_asset_tree.png
+
 
 2. 在 **创建资产树** 弹出窗口中填写以下字段：
 
@@ -189,7 +189,6 @@ EnOS Edge的模型已作为EnOS的公共模型提供。进入 **模型 > 公有�
 
 3. 找到创建的模板，点击其 **操作** 列中的 |edit|。
 
-   .. |edit| image:: ../media/button_edit.png
 
 4. 在 **编辑模板** 弹出窗口中，点击|download|。然后点击“IEC104-Client-linux v3.0_debug”后的|download2|来下载`point.xlsx`。这是将在本教程中使用的协议。<!--建议页面名称改为“编辑模板”-->
 
@@ -216,11 +215,10 @@ EnOS Edge的模型已作为EnOS的公共模型提供。进入 **模型 > 公有�
 
 7. 返回到 **EnOS Edge > 模板配置 > 模板编辑**。点击 |upload| 来上传 *point.xlsx*。
 
-   .. |upload| image:: ../media/button_upload.png
+
 
 8. 在 **模板编辑** 页面，点击每个测点后的 |point_mapping|。
 
-   .. |point_mapping| image:: ../media/button_point_mapping.png
 
 9. 在弹出窗口的 **采集** 选项卡下，选择其描述与测点标识符匹配的采集点，然后点击 **确定**。
 
@@ -244,7 +242,6 @@ EnOS Edge的模型已作为EnOS的公共模型提供。进入 **模型 > 公有�
 
 4. 在 **Edge详情** 中点击 **发布**旁的 |download_box_info| 并选择 **下载配置（主）** 来下载Edge的配置文件。
 
-   .. |download_box_info| image:: ../media/button_download_box_info.png
 
    .. image:: ../media/tutorial_download_box_info.png
 
@@ -285,7 +282,7 @@ EnOS Edge的模型已作为EnOS的公共模型提供。进入 **模型 > 公有�
 
 13. 点击以展开连接。在设备列表中点击任一设备 **操作** 列中的 |edit|。
 
-  |edit| image:: ../media/button_edit.png
+
 
 14. 在 **修改设备** 弹出窗口中，将 **AI偏移量** 设置为“a-b#c-d”的格式，a、b、c、d表示整数且a < b，c < d。 “-”表示值范围，“#”则表示该范围可以不连续。
 
@@ -343,14 +340,26 @@ EnOS Edge的模型已作为EnOS的公共模型提供。进入 **模型 > 公有�
 
 点击任一设备的 |view| 都可以查看到来自模拟器的数据。
 
-.. |view| image:: ../media/button_view.png
 
 .. image:: ../media/tutorial_device_data.png
 
 恭喜！你已了解如何将Edge设备连接到EnOS，并使用模拟器来模拟通过Edge将设备数据传输到EnOS云了。
 
-  .. |download| image:: ../media/button_download_template.png
 
-  .. |download2| image:: ../media/button_download.png
+.. |create| image:: ../media/button_new_asset_tree.png
+
+.. |point_mapping| image:: ../media/button_point_mapping.png
+
+.. |upload| image:: ../media/button_upload.png
+
+.. |download_box_info| image:: ../media/button_download_box_info.png
+
+.. |edit| image:: ../media/button_edit.png
+
+.. |view| image:: ../media/button_view.png
+
+.. |download| image:: ../media/button_download_template.png
+
+.. |download2| image:: ../media/button_download.png
 
 <!--end-->
