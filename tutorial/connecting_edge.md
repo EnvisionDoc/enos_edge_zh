@@ -193,9 +193,9 @@ EnOS Edge的模型已作为EnOS的公共模型提供。进入 **模型 > 公有�
 
 4. 在 **编辑模板** 弹出窗口中，点击|download|。然后点击“IEC104-Client-linux v3.0_debug”后的|download2|来下载`point.xlsx`。这是将在本教程中使用的协议。<!--建议页面名称改为“编辑模板”-->
 
-   .. |download| image:: ../media/button_download_template.png
+  .. |download| image:: ../media/button_download_template.png
 
-   .. |download2| image:: ../media/button_download.png
+  .. |download2| image:: ../media/button_download.png
 
 5. 打开刚刚下载的 `point.xlsx`。
 
