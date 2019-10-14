@@ -1,350 +1,352 @@
-# Connecting Edge to EnOS and Simulated Sub-devices
+# 通过EnOS Edge将设备连接至EnOS
 
-The prerequisite to using Edge is connecting Edge to EnOS cloud and the sub-devices. This tutorial uses Edge installed on a Dell Edge Gateway 3000, a protocol simulator program, and EnOS to explain:
+本教程会引导你逐步了解如何通过EnOS Edge将设备连接到EnOS Cloud。
 
-- How to connect Edge to EnOS cloud
-- How to use your laptop to simulate sub-devices
-- How to connect Edge to simualted sub-devices
+作为软件，EnOS Edge可以部署在多种硬件上。在本教程中，EnOS Edge软件安装在Dell Edge Gateway 3000上。本教程中Edge在硬件上的部署（见步骤6），无需用户操作，有关Edge的部署，请联系EnOS Edge部署人员。
 
-## Step 1: Defining Models
+## 场景
 
-A model is the abstraction of the features of an object connected to EnOS. It defines the features of a device, including attributes, measuring points, services, and events. For more information about models, see [Thing Model](/docs/device-connection/en/2.0.9/howto/model/model_overview).
+本教程场景如下：
 
-The model of Edge has been provided by EnOS as a public model. Go to **Public** tab in **Model** and search for *EnOS_Edge_Standard_Model*. You can view its basic information and feature definitions in by clicking **View** .
+- 使用IEC104规约模拟器，用一台笔记本电脑模拟出三个电表设备。
 
-In this step, we need to create models for the simulated sub-devices before they can be connected to EnOS. 
+- 配置Edge让其从模拟的电表设备处收集测点信息，然后发送至EnOS云端。
 
-1. Go to **Model** . In **Private** tab, click **New Model** .
+- 使用笔记本电脑登录EnOS，在EnOS控制台观察模拟电表设备上报的数据。
 
-2. In the **New Model** pop-up, fill in the fields as follows:
-  
-   .. csv-table:: Model Information
-      :header: "Field", "Value"
+.. image:: ../media/tutorial_blueprint.png
+
+## 步骤1：定义模型
+
+模型是连接到EnOS的对象功能的抽象。它定义了设备的功能，包括属性，测点，服务和事件。有关模型的更多信息，参见[物模型](/docs/device-connection/zh_CN/2.0.9/howto/model/model_overview)。
+
+EnOS Edge的模型已作为EnOS的公共模型提供。进入 **模型 > 公有模型**，搜索 *EnOS_Edge_Standard_Model*，然后点击 **查看** 查看其基本信息和功能定义。
+
+在此步骤中，需要先为模拟的子设备创建模型，然后才能将其连接到EnOS。
+
+
+1. 进入 **模型**，在 **私有模型** 选项卡点击 **创建模型**。
+
+2. 在 **创建模型** 窗口，填写如下字段：
+
+   .. csv-table:: 模型信息
+      :header: "字段", "值"
       :widths: auto
 
-      "Identifier", "TrainingMeter"
-      "Model Name", "TrainingMeter"
-      "Catetory", "Training"
-      "Created From", "No"
-      "Source Model", "No"
-      "Description", "Meter model for training"
+      "模型标识符", "TrainingMeter"
+      "模型名称", "TrainingMeter"
+      "分类", "Training"
+      "模型关系", "无"
+      "模型模板", "无"
+      "模型描述", "Meter model for training"
 
    .. image:: ../media/tutorial_creating_model.png
 
-3. Click **Edit** in the **Operations** column for **TrainingMeter**. Go to **Feature Definition** tab and create 4 measuring points by doing the following for every measuring point:
 
-   1. Click **Add**.
+3. 点击 **TrainingMeter** 模型 **操作** 列中的 **编辑**。进入 **功能定义** 选项卡，按照以下步骤分别创建4个测点：
 
-   2. Fill in the fields as described below in the pop-up.
+   a. 点击 **新增**。
+   b. 填写弹出窗口中所需的字段。
+   c. 点击 **确认**。
 
-   3. Click **Confirm**.
+  4个测点的信息如下：
 
-   The information of the 4 measuring points are as follows:
+  .. csv-table:: 测点信息
+     :header: "测点", "功能类型", "名称", "标识符", "测点类型", "是否有质量位", "数据类型", "默认值", "单位", "是否必填", "描述"
+     :widths: auto
 
-   .. csv-table:: Measuring Point Information
-      :header: "Measuring Point", "Feature Type", "Name", "Identifier", "Point Type", "Quality Indicator", "Data Type", "Default Value", "Unit", "Required", "Description"
+     "1", "测点", "Ua", "Meter.Ua", "AI", "无", "double", "电压：伏特 | V", "留空"
+     "2", "测点", "P", "Meter.ActivePower", "AI", "无", "double", "功率：千瓦 | kW", "留空"
+     "3", "测点", "Q", "Meter.ReactivePower", "AI", "无", "double", "功率：千乏 | kVar", "留空"
+     "4", "测点", "Ia", "Meter.Ia", "AI", "无", "double", "电流：安培 | A", "留空"
+
+
+  .. image:: ../media/tutorial_create_measuring_points.png
+
+这四个测点分别代表电表的A相电压、交流电功率、无功功率和A相电流。
+
+现在，你已为即将连接到Edge的模拟子设备创建了模型。
+
+## 步骤2：创建产品
+
+完成了模型定义后，需要基于设备和Edge模型创建产品。
+
+产品是具有相同功能的设备的集合。当模型从4个方面（属性，测点，服务和事件）抽象设备功能时，产品会进一步定义设备的通信参数。
+
+1. 进入 **设备管理 > 产品**，点击 **创建产品**。
+
+2. 在 **创建产品** 窗口，填写如下字段：
+
+   .. csv-table:: 模拟设备的产品信息
+      :header: "字段", "值"
       :widths: auto
 
-      "1", "Measurement Points", "Ua", "Meter.Ua", "AI", "No", "double", "Electric Potential: volt | V", "Leave it blank"
-      "2", "Measurement Points", "P", "Meter.ActivePower", "AI", "No", "double", "Power: kilowatt | kW", "Leave it blank"
-      "3", "Measurement Points", "Q", "Meter.ReactivePower", "AI", "No", "double", "Power: KiloVolt Ampere Reactive | kVar", "Leave it blank"
-      "4", "Measurement Points", "Ia", "Meter.Ia", "AI", "No", "double", "Electric Current: ampere | A", "Leave it blank"
-
-   .. image:: ../media/tutorial_create_measuring_points.png
-
-You have now created the model for simulated sub-devices we will use to connect to Edge. 
-
-## Step 2: Creating Products
-
-Now that we have defined the model, we need to create products based on the device and Edge models. 
-
-A product is a collection of devices with identical features. While a model defines aspects of a concrete device from 4 aspects (atrributes, measuring points, services, and events), a product further defines the communication parameters for a concrete device.
-
-1. Go to **Device Management > Product**. Click **New Product**.
-
-2. In the **New Product** pop-up, fill in the fields as follows:
-  
-   .. csv-table:: Product Information for Simulated Devices
-      :header: "Field", "Value"
-      :widths: auto
-
-      "Product Name", "training_meter"
-      "Asset Type", "Device"
-      "Model", "TrainingMeter"
-      "Data Type", "JSON"
-      "Certificate-Based Authentication", "Disabled"
-      "Description", "Electric meter for training"
+      "产品名称", "training_meter"
+      "节点类型", "设备"
+      "设备模型", "TrainingMeter"
+      "数据格式", "Json"
+      "证书双向认证", "禁用"
+      "产品描述", "Electric meter for training"
 
    .. image:: ../media/tutorial_creating_product_for_device.png
 
-You have created the product for simulated meters. Now let's do the same thing for the Edge device.
+这样，模拟电表的产品就创建完成了。现在，可以对Edge设备进行相同的操作。
 
 .. image:: ../media/tutorial_creating_product_for_edge.png
 
-Now we are ready to create the concrete devices on EnOS.
+下面可以开始准备在EnOS上创建设备实例。
 
-## Step 3: Creating Devices
+## 步骤3：创建设备
 
-A device instance on EnOS represents a concrete device in the physical world. A device is created from a product so that it inherits not only the basic features of the model, but also the communication parameters of the product (such as the product secret and product secret used for authentication).
+设备是由产品创建而来，因此它不仅继承了模型的基本功能，还继承了产品的通信参数（如，用于认证的产品密钥和产品密钥）。
 
-In this step we need to create devices on EnOS for Edge and its sub-devices.
+此步骤会在EnOS上为Edge及其子设备创建设备。
 
-1. Go to **Device Management > Device**. Click **New Device**.
+1. 进入 **设备管理 > 设备管理**，点击 **添加设备**。
 
-2. In the **New Device** pop-up, fill in the fields as follows:
-  
-   .. csv-table:: Device Information for Edge
-      :header: "Field", "Value"
+2. 在 **添加设备** 窗口，填写以下字段:
+
+   .. csv-table:: Edge设备信息
+      :header: "字段", "值"
       :widths: auto
 
-      "Product", "EnOS_Edge_Standard_Product"
-      "Device Key", "Leave it blank"
-      "Device Name", "Edge 01"
-      "Time Zone/City", "UTC+08:00"
+      "产品", "EnOS_Edge_Standard_Product"
+      "Device Key", "留空"
+      "设备名称", "Edge01"
+      "时区/城市", "UTC+08:00"
       "edge_type", "0: EdgeGateway"
 
    .. image:: ../media/tutorial_creating_device_for_edge.png
 
-A device instance for Edge has been created. Now let's do the same thing for the sub-devices. In this scenario, we will use our laptop to simulate three electric meters that will be connected to Edge. We will name them "meter01", "meter02", and "meter03". Their other attributes are listed as follows:
+这样，Edge的设备实例就创建完成。现在，对子设备执行相同操作。在这种情况下，使用笔记本电脑模拟将要连接到Edge的三个电表，将它们命名为“meter01”，“meter02”和“meter03”。它们的其他属性如下所示：
 
-.. csv-table:: Device Information for Sub-devices (Electric meter)
-   :header: "Field", "Value"
+.. csv-table:: 子设备（电表）信息
+   :header: "字段", "值"
    :widths: auto
 
-   "Product", "training_meter"
-   "Device Key", "Leave it blank"
-   "Device Name", "meter01, meter02, and meter03"
-   "Time Zone/City", "UTC+08:00"
+   "产品", "training_meter"
+   "Device Key", "留空"
+   "设备名称", "meter01, meter02, and meter03"
+   "时区/城市", "UTC+08:00"
 
 <!--The end-->
 
-The Edge and sub-device instances are now in the device list.
+现在，Edge和它的子设备实例都能在设备列表中查看了。
 
 .. image:: ../media/tutorial_device_list.png
 
-## Step 4: Creating Asset Tree and Asset for Edge
+## 步骤4：为Edge创建资产树与资产
 
-For Edge to function properly, we need to register the edge device in **Asset Tree**. To do that, we will first create an asset tree and bind the created Edge device to the tree as a node. You need an OU administrator account to create an asset tree.
+为了使Edge能够正常运行，需要在 **资产树** 中注册Edge设备。为此，需要首先创建一个资产树，并将创建的Edge设备作为节点绑定到该树。你需要获得OU管理员权限才能创建资产树。
 
-1. Go to **Asset Tree**. Click |create| in the upper left corner.
+1. 进入 **资产树**，点击左上角的 |create|。
 
    .. |create| image:: ../media/button_new_asset_tree.png
 
-2. In the **Create Asset Tree** pop-up, fill in the fields as follows:
+2. 在 **创建资产树** 弹出窗口中填写以下字段：
 
-   .. csv-table:: Asset Tree Information for Edge
-      :header: "Field", "Value"
+   .. csv-table:: Edge资产树信息
+      :header: "字段", "值"
       :widths: auto
 
-      "Name", "Edge02"
-      "Select Model", "EnOS_Edge_Standard_Model"
-      "Time Zone/City", "UTC+08:00"
-      "Description", "Leave it blank"
+      "资产树名称", "Edge02"
+      "选择模型", "EnOS_Edge_Standard_Model"
+      "时区/城市", "UTC+08:00"
+      "时区/城市", "留空"
       "edge_type", "0: EdgeGateway"
 
    .. image:: ../media/tutorial_creating_asset_tree.png
 
-3. Click the **+** to the right of the asset tree name "Edge02" in the left panel.
+3. 点击左侧面板上“Edge02”右侧的 **+** 按钮。
 
-4. In the **New Sub-node** pop-up, select **Bind to Existing Asset** and click **Next**.
+4. 在 **添加子节点** 弹出窗口中选择 **关联已有资产**，然后点击 **下一步**。
 
-5. In the device list, search for the Edge device we just created "Edge01", check the box in front of it, and click **Confirm**.
+5. 在设备列表中，搜索刚刚创建的Edge设备“Edge01”，选中它后点击 **确认**。
 
-   The Edge device has been bound to the asset tree as a sub-node.
+   这样，Edge设备就作为子节点绑定到资产树了。
 
    .. image:: ../media/tutorial_asset_tree_overview.png
 
-## Step 5: Creating Template for Edge
+## 步骤5：创建设备模板以映射数据点
 
-The template determines how data collected from a device by using a protocol is mapped into the model measuring points defined on EnOS cloud.
+设备模板规定了通过协议从设备收集的数据与EnOS云上定义的模型测量点的映射关系。
 
-1. Go to **EnOS Edge > Template**. Click **New Template**.
+1. 进入 **EnOS Edge > 模板配置**，点击 **添加**。
 
-2. In the **Add Template** pop-up, fill in the fields as follows:
+2. 在 **添加模板** 弹出窗口中填写以下字段：
 
-   .. csv-table:: Asset Tree Information for Edge
-      :header: "Field", "Value"
+   .. csv-table:: Edge模板信息
+      :header: "字段", "值"
       :widths: auto
 
-      "Template Name", "meter"
-      "Brand", "Envision (or any brand as you see fit)"
-      "Device Type", "Envision sample (or any type as you see fit)"
-      "Version", "v1.0 (or any random version number)"
-      "Model", "TrainingMeter"
+      "模板名称", "meter"
+      "设备品牌", "Envision（或任何合适的品牌）"
+      "设备型号", "Envision sample（或任何合适的型号）"
+      "版本", "v1.0（或任何随机版本号）"
+      "设备模型", "TrainingMeter"
 
    .. image:: ../media/tutorial_add_template.png
 
-3. Find the template you just created, click |edit| in the **Operations** column.
+3. 找到创建的模板，点击其 **操作** 列中的 |edit|。
 
    .. |edit| image:: ../media/button_edit.png
 
-4. In the **Edit Template** pop-up, click |download|. Click |download2| to download *point.csv* of "IEC104-Client-linux v3.0_debug" as this is the protocol we are going to use for this tutorial.
+4. 在 **编辑模板** 弹出窗口中，点击|download|。然后点击“IEC104-Client-linux v3.0_debug”后的|download2|来下载`point.xlsx`。这是将在本教程中使用的协议。<!--建议页面名称改为“编辑模板”-->
 
    .. |download| image:: ../media/button_download_template.png
+
    .. |download2| image:: ../media/button_download.png
 
-5. Open *point.csv* you just downloaded with a text editor. We strongly recommend you use Notepad++ to avoid any garbled code.
+5. 打开刚刚下载的 `point.xlsx`。
 
-   *point.csv* contains the attributes of collection and control points to be reported to Edge. Since we have defined 4 measuring points for the device models in **Step 1**, we need to create 4 collection points so that they can be mapped to the 4 measuring points later.
+   `point.xlsx` 中包含要报告给Edge的采集点和控制点的属性。由于在 **步骤1** 中已为设备模型定义了4个测点，因此需要创建4个采集点，以便将它们映射到4个测点。
 
-   Originally, *point.csv* looks like the following, the Chinese characters seperated by commas on the first line means measuring point, point number, value type, point type, coefficient, base value, and alias, from left to right:
+   `point.xlsx` 初始文件如下所示，第一行从左至右的字段表示测点、点号、值类型、点类型、系数、基值和别名：
 
    .. image:: ../media/tutorial_point_csv_original.png
 
-   Let's edit *point.csv* so that it looks like this:
+   编辑 `point.xlsx` 使之如下所示：
 
    .. image:: ../media/tutorial_point_csv_edited.png
 
-   As you can see, we changed the measuring point, value type, and point type to match the "Identifier", "Data Type", and "Point Type" defined in the model in **Step 1**. 
-   
-   .. note:: As for point numbers, they must be continuous positive integers and follow the order in which the collection points are sent to EnOS as prescribed in the channel table.
+   如上图所示，测点、值类型和点类型都被更改，以匹配 **步骤1** 中的模型所定义的“标识符”、“数据类型”和“测点类型”。
 
-6. Save and close *point.csv*.
+   .. note:: 关于点号，它们必须是连续的正整数，并遵循通道表中规定的将收集点发送到EnOS的顺序。<!--这个channel table在哪里？-->
 
-7. Go back to **EnOS Edge > Template > Edit Template**. Click |upload| to upload *point.csv* you just edited.
+
+6. 保存并关闭 `point.xlsx`。
+
+7. 返回到 **EnOS Edge > 模板配置 > 模板编辑**。点击 |upload| 来上传 *point.xlsx*。
 
    .. |upload| image:: ../media/button_upload.png
 
-8. In **Edit Template** page, click |point_mapping| for each measuring point. 
+8. 在 **模板编辑** 页面，点击每个测点后的 |point_mapping|。
 
    .. |point_mapping| image:: ../media/button_point_mapping.png
 
-9. In the pop-up, select the collection point in **Collect** tab whose description matches the measuring point's identifier and click **Confirm**.
+9. 在弹出窗口的 **采集** 选项卡下，选择其描述与测点标识符匹配的采集点，然后点击 **确定**。
 
-   By doing this, you map the measuring points defined in our model to the collection points defined in *point.csv*.
+   这样，你就将模型中定义的测点和 *point.xlsx* 中定义的采集点建立了映射关系。
 
    .. image:: ../media/tutorial_point_mapping.png
 
-10. Repeat step 8 and 9 until all the measuring points are properly mapped.
+10. 重复第8及第9步，直到完成所有测点的映射。点击 **保存**。
 
-By now we have completed configuring our template. This means when we set up our Edge and connects it to EnOS cloud and sub-devices, the collection points from the simulated sub-devices can be properly mapped to the measuring points defined in the model.
+至此，模板已配置完成。这表示当我们设置Edge并将其连接到EnOS云和子设备时，来自模拟子设备的采集点能够被正确地映射到模型定义的测点上。
 
-## Step 6: Configuring Edge
+## 步骤6：配置Edge
 
-In this step, we will add the Edge device we created in **Device Management** to **Edge Management**, configure its connection with sub-devices, and configure the offset value for the measuring points of each sub-device.
+在本步骤中，我们把在 **设备管理** 中创建的Edge设备添加到 **Edge管理** 中，配置其与子设备的连接，并为每个子设备的测点配置偏移值。
 
-1. Go to **EnOS Edge > Edge Management**. Click **New Edge**.
+1. 进入 **EnOS Edge > Edge管理**，点击 **添加**。
 
-2. In the **New Edge** pop-up, select the Edge we added and click **Confirm**.
+2. 在 **添加 Edge** 弹出窗口中选择已经添加的Edge并点击 **确定**。
 
-3. Click **View** in **Operations** column of the Edge you added.
+3. 在添加的Edge的 **操作** 栏中点击 **查看**。
 
-4. In **Edge Detail**, click |download_box_info| beside the **Publish** button and select **Download Edge Info(Main)** to download the configuration file for the Edge device.
+4. 在 **Edge详情** 中点击 **发布**旁的 |download_box_info| 并选择 **下载配置（主）** 来下载Edge的配置文件。
 
    .. |download_box_info| image:: ../media/button_download_box_info.png
+
    .. image:: ../media/tutorial_download_box_info.png
 
-5. Give the downloaded *box.conf* to an EnOS Edge support personnel and let the support personnel configure the Edge device with *box.conf*. You don't need to do this step yourself.
+5. 将下载的 *box.conf* 交给EnOS Edge支持人员，让支持人员使用*box.conf* 配置Edge设备。你无需自己执行此步骤。
 
-   After the support personnel has properly configured the Edge device, it can connect to EnOS once it is powered on.
+   在支持人员正确配置Edge设备后，一旦打开Edge的电源，它就可以连接到EnOS。
 
-6. In **Edge Detail**, go to **Access Management** tab. Click **Add Connection** in **Ethernet** tab.
+6. 在 **Edge详情** 页面，进入 **接入管理** 选项卡。点击 **以太网** 选项卡下的 **添加连接**。
 
-7. In the **Add Connection** pop-up, fill in the fields as follows:
+7. 在 **添加连接** 弹出窗口中填写以下字段：
 
-   .. csv-table:: Asset Tree Information for Edge
-      :header: "Field", "Value"
+   .. csv-table:: Edge资产树信息
+      :header: "字段", "值"
       :widths: auto
 
-      "Name", "Meter_Training"
-      "Mode", "TCP/IP Client"
-      "Short Connection", "Disabled"
-      "Primary Interface", "The IPv4 Address of your laptop. For port you can give it a random integer larger than 1000, this number included."
-      "Standby Interface", "Leave it blank"
-      "Protocol Type", "IEC104"
-      "Protocol Version", "IEC104-Client-linux v3.0_debug"
-      "Configuration File", "No operation is needed in this case. But you might have to modify configuration if you use other protocols or as required."
+      "连接名称", "Meter_Training"
+      "模式", "TCP/IP Client"
+      "是否为短连接", "关闭"
+      "地址（主）", "即笔记本电脑的IPv4地址。对于端口，你可以输入任意大于或等于1000整数。"
+      "地址（备）", "留空"
+      "规约类型", "IEC104"
+      "规约", "IEC104-Client-linux v3.0_release"
+      "配置文件", "在此种情况下，无需任何操作。但若使用其它协议，则可能需要修改配置。（或按需修改）"
 
    .. image:: ../media/tutorial_add_connection.png
 
-8. Click **Confirm**. 
+8. 点击 **确定**。
 
-   You have now created a connection for the Edge device.
+   现在，你已为Edge设备创建了连接。
 
-9. Click to expand the connection you just created. 
+9. 点击以展开创建完成的连接。
 
-10. Click **Add Device**. In **Add Device** window, select the product **training_meter** we just created, and check all three devices meter01, meter02, and meter03.
+10. 点击 **添加设备**。 在 **添加设备** 窗口中，选择刚刚创建的产品 **training_meter**，然后勾选所有三个设备：电表01、电表02和电表03。
 
-11. Under **Template Setting**, select the template we created for these device, **meter**.
+11. 在 **设备模板设置** 下，选择为以上设备创建的模板 **meter**。
 
-12. Click **Save**.
+12. 点击 **保存**。
 
-13. Click to expand the connection. In the device list, click |edit| in the **Operation** column of any device.
+13. 点击以展开连接。在设备列表中点击任一设备 **操作** 列中的 |edit|。
 
-14. In the **Edit Device** pop-up, set the **AI Offset** in format "a-b#c-d", a, b, c, d representing integers and a < b, c < d. "-" indicates that this is a value range, while # indicates that the range can be discontinuous.
+  |edit| image:: ../media/button_edit.png
 
-   The offset value range is used to identify which values in the simulation scheme file belong to this device. 
+14. 在 **修改设备** 弹出窗口中，将 **AI偏移量** 设置为“a-b#c-d”的格式，a、b、c、d表示整数且a < b，c < d。 “-”表示值范围，“#”则表示该范围可以不连续。
 
-   We need to do a little bit math here. Since there are 4 measuring points we need to map to every device, we must make sure that there are 4 integers in the value ranges of one device, both end of a range included.
+   偏移值范围用于识别模拟方案文件中的哪些值属于该Edge设备。
 
-   In this example, in order to have four integers for one device. We can set the **AI Offset** as "2-5" or "2-3#6-7". We choose to use "2-5" for convenience's sake.
+   此处需要做一些运算。由于对每台设备都要映射4个测点，因此必须确保单个设备的值范围内有4个整数，包括最大与最小值。
 
-15. Click **Confirm**.
+   在此示例中，为了使单个设备具有四个整数，可将 **AI偏移量** 设置为 “2-5”或“2-3#6-7”。方便起见，我们使用“2-5”。
 
-16. Repeat step 14 and 15 for all remaining devices, all the four AI offset ranges being unique, not overlapping any other.
+15. 点击 **确定**。
 
-## Step 7: Installing and Configuring IEC104 Protocol Simulator
+16. 对其余设备重复14和15步。所有四个AI偏移范围都是唯一的，不会重叠。
 
-We are almost there! In this step, we will install a protocol simulator, which simulates devices sending measuring point data in IEC104 protocol to Edge, on our laptop. And then we will configure how this simulator sends data to EnOS and finally, kick off the simulation.
+## 步骤7：安装即配置IEC104规约模拟器
 
-1. Download the [IECServer.exe](../_static/IECServer.exe) and [iec_ai_12.properties](../_static/iec_ai_12.properties).
+在本步骤中，我们将在笔记本电脑上安装协议模拟器，用以模拟将IEC104规约中的测点数据发送到Edge的设备。然后，我们将配置此模拟器将数据发送至EnOS，最后进行模拟。
 
-2. Open *iec_ai_12.properties* with a text editor (again we recommend Notepad++).
+1. 下载 [IECServer.exe](../_static/IECServer.exe) 和 [iec_ai_12.properties](../_static/iec_ai_12.properties)。（鼠标右键点击下载文件，选择“链接另存为”）
 
-   Each item in this file represents a measuring point. As we have 4 measuring points each for 3 electric meters, the total measuring points is 12, as there are in this file.
+2. 使用文本编辑器打开 *iec_ai_12.properties* （推荐使用Notepad++）。
 
-   We need to change their "IOB" values so that they can be properly mapped to measuring points of each devices.
+   该文件中的每个项都代表一个测点。由于有3个电表，每个电表有4个测点，所以如该文件所示，总测点为12。
 
-   We divide the items into 3 groups: ITEM1 to ITEM4; ITEM5 to ITEM8, ITEM9 to ITEM12, each group representing the 4 measuring points of an electric meter.
+   修改“IOB”值，以便将其正确映射到每个设备的测点。
 
-   Let's say ITEM1 to ITEM4 are measuring points of meter01, whose AI offset is 2-5 as configured in Step 6. Then the IOB values of ITEM1 to ITEM4 should be 16385+2, 16385+3, 16385+4, 16385+5, i.e., 16387, 16388, 16389, 16390.
+   将所有项目分为3组：ITEM1至ITEM4； ITEM5至ITEM8，ITEM9至ITEM12，每组代表一个电表的4个测点。
 
-   Repeat this step for all items in this configuration file. Save your changes.
+   假设ITEM1至ITEM4是电表01的测点，其AI偏移量为步骤6中配置的“2-5”。那么ITEM1至ITEM4的IOB值应为16385+2、16385+3、16385+4、16385+5， 即16387、16388、16389、16390。“16385”是IEC104规约 *protocol.sys* 中规定的AI数据的起始地址。
 
-3. Open **IECServer.exe**, click **Load**, locate and select the configuraion file you just edited, click **Open**.
+   对此配置文件中的所有项目重复以上步骤。然后保存更改。
 
-   You loaded the configuraion file into the simulator.
+3. 打开 **IECServer.exe**，点击 **Load**，找到并选择刚刚编辑的配置文件，然后单击 **打开**。
 
-4. Set the port number as the same port you set to the address of your Edge connection. In our case, it's 2404.
+   这样就将配置文件加载到模拟器中。
 
-   You can find the port number as follows:
-   
-   1. Go to **EnOS Edge > Edge Management**.
-   
-   2. Click **View** to go to the **Edge Detail** page of the Edge you created.
+4. 在按钮 **StartServer** 旁的文本框内输入与子设备连接地址相同的端口。在我们的例子中是“2404”。
 
-   3. Go to **Access Management** tab, click to expand the connection. You can see the port number in the **Address** field.
+   可以通过以下步骤获取端口信息：
 
-5. Click **StartServer** to start simulation.
+   1. 进入 **EnOS Edge > Edge管理**。
+
+   2. 点击创建的Edge设备的 **查看** 进入 **Edge详情** 页面。
+
+   3. 进入 **接入管理** 选项卡，在连接的 **地址** 项中即可查看到端口信息。
+
+5. 点击 **StartServer** 来运行模拟器。
 
    .. image:: ../media/tutorial_iec104_simulator.png
 
-## Step 8: Viewing the Data on EnOS Console
+## 步骤8：在EnOS控制台查看数据
 
-Now let's go to **EnOS Edge > Edge Management**, click **View** and go to **Access Management** tab. Click to expand our connection. You can see that the devices have a green light in front of them, indicating a successful connection.
+现在，进入 **EnOS Edge > Edge管理**，点击Edge01设备的 **查看**，再进入 **接入管理** 选项卡。点击展开连接可以看到设备前的绿灯，这表明连接已成功。
 
 .. image:: ../media/tutorial_connection_success.png
 
-Click |view| for any device to view the data that is coming from our simulator.
+点击任一设备的 |view| 都可以查看到来自模拟器的数据。
 
 .. |view| image:: ../media/button_view.png
 
 .. image:: ../media/tutorial_device_data.png
 
-Congratulations! You have learnt how to connect an Edge device to EnOS, and use a simulator to simulate devices transferring data through Edge to EnOS cloud.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+恭喜！你已了解如何将Edge设备连接到EnOS，并使用模拟器来模拟通过Edge将设备数据传输到EnOS云了。
