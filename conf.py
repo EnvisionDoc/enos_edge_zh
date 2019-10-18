@@ -120,7 +120,6 @@ html_theme = 'sphinx_enos_theme'
 #
 html_theme_options = {
     'copyright_zh': '© 2019 Envision Digital. All Rights Reserved.',
-    'docs_url_zh': '/zh_CN/documentation/',
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
